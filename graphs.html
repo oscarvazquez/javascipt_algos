@@ -1,0 +1,122 @@
+<!-- What is a graph???
+AddNode
+AddEdge -->
+
+<script>
+
+var Node = function(data){
+	this.data = data;
+	this.neighbors = [];
+};
+
+var Graph = function(){
+	this.nodes = []
+	this.length = 0;
+}
+
+Graph.prototype.addNode = function(node){
+	this.nodes.push(node);
+	return ++this.length;
+}
+
+Graph.prototype.addEdge = function(nodeA, nodeB){
+	var nA = this.nodes.filter(function(node){
+		return node.data.id === nodeA;
+	});
+
+	var nB = this.nodes.filter(function(node){
+		return node.data.id === nodeB;
+	})
+
+	if(nA.length && nB.length) {
+		nA[0].neighbors.push(nB[0]);
+		nB[0].neighbors.push(nA[0]);
+	}
+}
+
+
+
+var g = new Graph();
+
+g.addNode(new Node({
+	id: 1,
+	articleId: 108,
+	readBy: [{userId: 15}]
+}))
+
+g.addNode(new Node({
+	id: 2,
+	articleId: 108,
+	readBy: [{userId: 15}]
+}))
+
+g.addNode(new Node({
+	id: 3,
+	articleId: 109,
+	readBy: [{userId: 16}]
+}))
+
+g.addNode(new Node({
+	id: 4,
+	articleId: 110,
+	readBy: [{userId:15}, {userId: 16}]
+}))
+
+g.addNode(new Node({
+	id: 5,
+	articleId: 111,
+	readBy: [{userId: 15}, {userId:23}, {userId:42}]
+}))
+
+g.addNode(new Node({
+	id: 6,
+	articleId: 112,
+	readBy: [{userId:23}]
+}))
+
+g.addEdge(1, 2);
+g.addEdge(1, 4);
+g.addEdge(1, 5);
+g.addEdge(2, 4);
+g.addEdge(4, 5);
+g.addEdge(4, 3);
+g.addEdge(5, 2);
+g.addEdge(5, 6);
+
+
+// the idea behind this type setup is that because user 15 and 16 both read article number 110, there is a chance that because user 15 also read article 111, that user 16 would also want article 111 reccomended to him.
+
+
+// Find an article that the user has not read and might like to read according to this pattern of thinking
+
+function recd(userId){
+	// 1. Find an article that this user and atleast one other user has read 
+	var articles = g.nodes.filter(function(node){
+		return node.data.readBy.length > 1 && node.data.readBy.filter(function(user){
+				return user.userId === userId
+		}).length > 0;
+	});
+
+	if(articles.length === 0){
+		return g.nodes[0].articleId;
+	}
+
+	// 2. Find an adjacent node that this user has not yet read 
+
+	var recs = articles.map(function(article){
+		var nodes = article.neighbors.filter(function(node){
+			return node.data.readBy.filter(function(user){
+				return user.userId === userId;
+			}).length === 0;
+		});
+
+		return nodes.length > 0 ? nodes[0].data : [];
+	});
+
+	return recs;
+}
+
+var recs = recd(16);
+console.log(recs)
+
+</script>

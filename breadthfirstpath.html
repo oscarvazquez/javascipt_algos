@@ -1,0 +1,53 @@
+Uses the queue instead of stack 
+marks first node as visited then visits all adjacent nodes adding them to the queue. Take the next item on the queue
+repeat
+<script>
+function queue(optElements) {
+	if (optElements instanceof Array){
+		this.items = optElements
+	} else {
+		this.items = []
+	}
+	this.length = this.items.length;
+}
+// takes an item and pushes it to the end of the queue
+Queue.prototype.enqueue = function(item) {
+	this.length += 1;
+	return this.items.push(item);
+}
+
+Queue.prototype.dequeue = function(item) {
+	if (this.length > 0){
+		this.length -= 1
+	}
+	return this.items.shift();
+}
+
+var graph = makeGraph(map.data, map.width, map.height);
+var startNode = getNodeById(graph, startPos);
+var targetNode = getNodeById(graph, targetPos);
+var path = []
+var curNode = startNode;
+
+var queue = new Queue();
+queue.enqueue(startNode)
+
+while(true){
+	curNode = queue.dequeue();
+	curNode.visited = true;
+	path.push(curNode.id)
+
+	if(curNode.id === targetNode.id){
+		break;
+	}
+
+	curNode.adj.forEach(function(id){
+		var node = getNodeById(graph, id);
+		if(!node.visited){
+			node.visited = true;
+			queue.enqueue(node);
+		}
+	})
+}
+
+</script>

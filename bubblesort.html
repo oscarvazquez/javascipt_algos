@@ -1,0 +1,24 @@
+<!-- bubblesort  -->
+<!-- n^2 -->
+<script>
+	arr = [4, 3, 2, 7, 1, 8, 10, 20, 12, 3, 1]
+function bubblesort(arr){
+	var len = arr.length
+	do {
+		var check = false
+		for(var i = 0; i < len - 1; i++){
+			if(arr[i] > arr[i + 1]){
+				swap(arr, i, i + 1);
+				check = true
+			}
+		}
+	} while (check);
+}
+function swap(arr, indexa, indexb){
+	var swapper = arr[indexa];
+	arr[indexa] = arr[indexb];
+	arr[indexb] = swapper;
+}
+bubblesort(arr)
+console.log(arr)
+</script>

@@ -1,0 +1,27 @@
+check each item in order
+speed is directly proportional with the size of the list 
+BIG(O(N))
+<script>
+	function linearSearch(data, pred){
+		var item = null
+
+		data.some(function(row){
+			if(pred(row)){
+				item = row;
+				return true;
+			}
+			return false;
+		});
+		return item;
+	}
+
+	var list = [];
+	for(var i = 0; i < 10; i++){
+		list.push(i);
+	}
+
+	var match = linearSearch(list, function(item){
+		return item > 5 && item % 2 === 0
+	})
+	console.log(match)
+</script>

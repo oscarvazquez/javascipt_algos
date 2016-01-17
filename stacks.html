@@ -1,0 +1,32 @@
+<!-- Last in first out -->
+
+<!-- A good use case for using stacks would be for an undo button within an application. So the last action taken would be the first method to be called. -->
+
+<!-- push pop top -->
+
+<script>
+	function Stack(){
+		this.items = [];
+		this.length = this.items.length;
+	}
+
+	Stack.prototype.push = function(item){
+		this.length += 1;
+		return this.items.push(item);
+	}
+
+	Stack.prototype.pop = function(){
+		if(this.length > 0){
+			this.length -= 1;
+		}
+
+		return this.items.pop();
+	}
+	Stack.prototype.top = function(){
+		if(this.length > 0){
+			return this.items[this.length - 1];
+		}
+
+		return undefined;
+	}
+</script>

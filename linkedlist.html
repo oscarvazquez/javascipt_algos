@@ -1,0 +1,75 @@
+<script>
+	// linkedlist linear collection of elements, collection of individual nodes, data attribute, and next attribute. The last node will have a next attribute of nulll. Because each node is created seperately the actual location of the next node is irrelevant. Speed to access a node, is directly proportional to the size of the list. 
+	// Adding and removing nodes from the middle of the list is very fast
+	// Adding
+
+	/// A Singly-Linked List
+// In computer science, a singly-linked list is a data structure that holds a sequence of linked nodes. Each node, in turn, contains data and a pointer, which can point to another node.
+
+// Nodes of a singly-linked list are very similar to steps in a scavenger hunt. Each step contains a message (e.g. "You've reached France") and pointers to the next step (e.g. "Visit these latitude and longitude coordinates"). When we start sequencing these individual steps to form a sequence of steps, we are creating a scavenger hunt.  
+
+	function node(data){
+		data: data
+		next: null
+	}
+	function LinkedList(){
+		this.head = null;
+		this.tail = null;
+		this.length = 0;
+	}
+
+	LinkedList.prototype.add = function(data){
+		var node = new Node(data)
+
+		if(this.head = null){
+			this.head = node;
+			this.tail = node;
+		}
+		this.tail.next = node;
+		this.tail = node;
+		this.length += 1;
+
+		return node;
+	}
+
+	LinkedList.prototype.delete = fucntion(node){
+		if (this.length === 1) {
+			return false;
+		}
+		if (node instanceof Node) {
+			for (var _node = this.head; _node != null; _node = _node.next){
+				if(_node.next === node){
+					_node.next = node.next
+					this.length -= 1;
+					return true;
+				}
+			}
+		} else {
+			for (var _node = this.head; _node !== null; _node = _node.next) {
+				if(_node.next === this.tail){
+					_node.next = null;
+					this.tail = _node;
+					this.length -= 1;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	LinkedList.prototype.clear = function(){
+		this.length = 0;
+		this.head = null;
+		this.tail = null;
+	}
+
+	LinkedList.prototype.has = function(node){
+		for (var _node = this.head; _node !== null; _node = _node.next ){
+			if(_node === node){
+				return true
+			}
+		}
+		return false
+
+	}
+</script>

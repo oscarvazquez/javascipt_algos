@@ -1,0 +1,54 @@
+// implemented as objects,
+
+// there is no relationship within where an element is within an array 
+// and where it is stored in memory.
+
+// some negatives associated with arrays have to do with of its benefits
+// the fact that all the elements of an array are placed right next to each 
+// other in memory, such that if we want to access any element within the array 
+// we can do so by performing arithmetic, on the base memory address of the first
+// element of the array. So constant access type, needs to be laid out on continuos 
+// block of memory, if the array we need to allocate is larger than the memory we have 
+// available this can be a problem.
+<script>
+// map ---
+var brothers = ['oscar', 'eddy', 'gustavo', 'marcos']
+
+// brothersAsObjects = brothers.map(function(whatever){
+// 	return {
+// 		name: whatever
+// 	}
+// })
+
+// console.log(brothersAsObjects)
+
+// reduce ----
+
+// var longestName = brothers.reduce(function(longestName, brother){
+// 	longestName = longestName || '';
+
+// 	if(brother.length > longestName.length){
+// 		longestName = brother;
+// 	}
+
+// 	return longestName;
+// })
+// console.log(longestName)
+
+// var authors = [
+// 	{name: 'oscar vazquez', section: ['Business']},
+// 	{name: 'John C', section: ['Business', 'Sports']},
+// 	{name: 'Smething Else', section: ['Business', 'Movies', 'Sports']},
+// 	{name: 'marcos vazquez', section: ['Business', 'World']},
+// 	{name: 'balnk vazquez', section: ['Movies', "Sports"]},
+// 	{name: 'Gustavo vazquez', section: ['World']}
+// ]
+// var sportsAuthors = authors.filter(function(author){
+// 	return author.section.indexOf("Sports") >= 0;
+// }).map(function(SportsAuthor){
+// 	return SportsAuthor.name;
+// })
+// console.log(sportsAuthors)
+</script>
+
+

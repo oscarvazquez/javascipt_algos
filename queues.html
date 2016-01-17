@@ -1,0 +1,31 @@
+<!-- like the line at a supermarket, first in-first out principle. They exit the line at the same order that they entered it. 
+
+common operations 
+
+enqueue 
+dequeue
+length  -->
+<script>
+function queue(optElements) {
+	if (optElements instanceof Array){
+		this.items = optElements
+	} else {
+		this.items = []
+	}
+	this.length = this.items.length;
+}
+// takes an item and pushes it to the end of the queue
+Queue.prototype.enqueue = function(item) {
+	this.length += 1;
+	return this.items.push(item);
+}
+
+Queue.prototype.dequeue = function(item) {
+	if (this.length > 0){
+		this.length -= 1
+	}
+	return this.items.shift();
+}
+
+// look up different use cases for queue in real world applications 
+</script>
